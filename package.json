@@ -1,0 +1,19 @@
+{
+  "name": "cinema-management",
+  "version": "1.0.0",
+  "description": "a web app for cinema management including movies schedules, bookings, asset and user management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsvoo/cinema-management.git"
+  },
+  "author": "Femi Jones, Onoja Victor, Anthony Faruna, Aguguom Wisdom, Tobi Otoju,",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsvoo/cinema-management/issues"
+  },
+  "homepage": "https://github.com/jsvoo/cinema-management#readme"
+}
