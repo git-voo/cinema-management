@@ -41,6 +41,19 @@ router.delete("/delete", async (req, res)=>{
 })
 
 
+// UPDATE category
+
+router.put("/update", async (req, res)=>{
+    const {id} = req.body
+    const category = await categories_model.findOne({_id:id})
+    if(category){
+       await categories_model.updateOne({_id:id}, req.body)
+       const updatedcategory = await categories_model.findOne({_id:id})
+        res.send(updatedcategory)
+    }else{
+        res.send("No category found with this id")
+    }
+})
 
 
 
