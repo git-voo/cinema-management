@@ -19,6 +19,42 @@ router.get("/movie", async (req, res) => {
 
 
 
+//CREATE A SCHEDULE
+router.post("/", async(req, res)=>{
+    const schedule = await schedules_model.create(req.body)
+    res.send(schedule)
+})
+
+
+
+//DELETE SCHEDULE
+router.delete("/delete", async (req, res)=>{
+    const {id} = req.body 
+    const schedule = await schedules_model.findOne({_id:id})
+   if(schedule){
+    await schedules_model.deleteOne({_id:id})
+
+    res.send("schedule deleted")
+   }else{
+    res.send("No schedule found with this id")
+   }
+})
+
+
+// UPDATE SCHEDULE
+
+router.put("/update", async (req, res)=>{
+    const {id} = req.body
+    const schedule = await schedules_model.findOne({_id:id})
+    if(schedule){
+       await schedules_model.updateOne({_id:id}, req.body)
+       const updatedSchedule = await schedules_model.findOne({_id:id})
+        res.send(updatedSchedule)
+    }else{
+        res.send("No schedule found with this id")
+    }
+})
+
 
 
 
