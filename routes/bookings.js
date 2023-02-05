@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 })
 
 
-//GET Single movie booking
+//GET Single movie booking in the set
 
 router.get("/movie", async (req, res) => {
     const { movie_id } = req.body
