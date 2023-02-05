@@ -27,6 +27,19 @@ router.post("/", async(req, res)=>{
 
 
 
+//DELETE category
+router.delete("/delete", async (req, res)=>{
+    const {id} = req.body 
+    const category = await categories_model.findOne({_id:id})
+   if(category){
+    await categories_model.deleteOne({_id:id})
+
+    res.send("category deleted")
+   }else{
+    res.send("No category found with this id")
+   }
+})
+
 
 
 
