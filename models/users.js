@@ -1,7 +1,7 @@
 const mongoose = require("mongoose") 
-const schema = new mongoose.Schema
+const schema =  mongoose.Schema
 const msg ="Field is required"
-const userSchema = schema({
+const userSchema = new schema({
     fullname:{
         type:String,
         required:[true, msg]
@@ -30,9 +30,13 @@ const userSchema = schema({
         type:String,
         required:[true, msg]
     },
+    verification_code:{
+      type:String,
+      required:[true, msg]
+    },
     
     is_verified:{
-      type:String,
+      type:Boolean,
       required:[true, msg]
     }
     //MODEL SHOULD INCLUDE AN ELEMENT THAT HOLDS VERIFICATION CODE
