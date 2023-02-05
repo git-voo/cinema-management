@@ -54,5 +54,21 @@ router.post("/create", async (req, res) => {
 
 })
 
+//Verify User Email
+router.post("/email/verify", async (req, res) => {
+    const { email, inputedCode } = req.body
+    const user = await user_model.findOne({ email: email })
+    if (user) {
+
+        if (user.verification_code === inputedCode) {
+            user.is_verified = true
+            user.save()
+            res.send(true)
+        } else {
+            res.send("Incorrect verification code")
+        }
+    }
+})
+
 
 module.exports = router
