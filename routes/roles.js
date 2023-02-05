@@ -27,6 +27,19 @@ router.post("/", async(req, res)=>{
 
 
 
+//DELETE role
+router.delete("/delete", async (req, res)=>{
+    const {id} = req.body 
+    const role = await roles_model.findOne({_id:id})
+   if(role){
+    await roles_model.deleteOne({_id:id})
+
+    res.send("role deleted")
+   }else{
+    res.send("No role found with this id")
+   }
+})
+
 
 
 
