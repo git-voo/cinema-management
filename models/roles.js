@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
-const schema = new mongoose.Schema
+const schema = mongoose.Schema
 const msg = "Field is required"
 
-const rolesSchema = schema({
+const rolesSchema = new schema({
     name:{
         type:String,
         required:[true, msg]
