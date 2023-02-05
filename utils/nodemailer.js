@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer")
 
 
 
-export const mail = (code, receiver) => {
+const mail = (code, receiver) => {
     //code is the verification code being sent to user
     // receiver is an object that holds user with which we can access user's name and email address
     const transporter = nodemailer.createTransport({
@@ -17,14 +17,17 @@ export const mail = (code, receiver) => {
         from: 'ourEmail@email.com',
         to: receiver.email,
         subject: 'Verification Code',
-        html: `<p> Welcome <b>${receiver.name}</b>, Your verification code is ${code} </p>`,
+        html: `<p> Welcome <b>${receiver.fullname}</b>, Your verification code is ${code} </p>`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
+         if (error) {
             console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
         }
     });
 }
+
+
+module.exports = mail
