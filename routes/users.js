@@ -83,10 +83,23 @@ router.delete("/delete", async (req, res)=>{
    }else{
     res.send("No user found with this id")
    }
-})  
+})
 
 
 
+// UPDATE USER
+
+router.put("/update", async (req, res)=>{
+    const {id} = req.body
+    const user = await user_model.findOne({_id:id})
+    if(user){
+       await user_model.updateOne({_id:id}, req.body)
+       const updatedUser = await user_model.findOne({_id:id})
+        res.send(updatedUser)
+    }else{
+        res.send("No user found with this id")
+    }
+})
 
 
 
