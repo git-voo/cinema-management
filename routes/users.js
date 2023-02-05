@@ -19,6 +19,40 @@ router.get("/vendor", async (req, res) => {
 })
 
 
+//GET ONE USER
+router.get("/user", async (req, res) => {
+    const { id } = req.body
+    const user = await user_model.findOne({ _id: id })
+    res.send(user)
+})
+
+//GET ONE VENDOR'S USER
+router.get("/vendor/user", async (req, res) => {
+    const { id, vendor_id } = req.body
+    const user = await user_model.findOne({ _id: id, vendor_id: vendor_id })
+    res.send(user)
+})
+
+//CREATE A USER
+
+router.post("/create", async (req, res) => {
+
+    const veri_code = Math.floor(100000 + Math.random() * 900000)
+    req.body.verification_code = veri_code
+
+
+    const existingUser = await user_model.findOne({ "email": req.body.email })
+
+    if (existingUser) {
+        res.send("user with email already exist. Login to continue")
+    } else {
+        //Email code to user 
+        mail(veri_code, req.body)
+        const user = await user_model.create(req.body)
+        res.send(user)
+    }
+
+})
 
 
 module.exports = router
