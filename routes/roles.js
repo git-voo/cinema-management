@@ -41,6 +41,20 @@ router.delete("/delete", async (req, res)=>{
 })
 
 
+// UPDATE role
+
+router.put("/update", async (req, res)=>{
+    const {id} = req.body
+    const role = await roles_model.findOne({_id:id})
+    if(role){
+       await roles_model.updateOne({_id:id}, req.body)
+       const updatedrole = await roles_model.findOne({_id:id})
+        res.send(updatedrole)
+    }else{
+        res.send("No role found with this id")
+    }
+})
+
 
 
 
