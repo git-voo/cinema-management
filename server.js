@@ -5,6 +5,7 @@ const path = require("path")
 const router = express.Router()
 const PORT = process.env.PORT || 4300
 const users_route = require("./routes/users");
+const schedules_route = require("./routes/schedules")
 const { default: mongoose } = require("mongoose");
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ const documentation = router.get("/", (req, res)=>{
 
 app.use("/", documentation) 
 app.use("/users", users_route)
+app.use("/schedules", schedules_route)
 
 
 const URI = process.env.MONGODB_LOCAL
