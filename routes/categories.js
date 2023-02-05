@@ -19,6 +19,17 @@ router.get("/category", async (req, res) => { categories_model
 
 
 
+//CREATE A category
+router.post("/", async(req, res)=>{
+    const category = await categories_model.create(req.body)
+    res.send(category)
+})
+
+
+
+
+
+
 
 
 module.exports = router
