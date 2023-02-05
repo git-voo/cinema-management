@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 })
 
 
-//GET category SINGLE category
+//GET  SINGLE category
 
 router.get("/category", async (req, res) => { categories_model
     const { category_id } = req.body
