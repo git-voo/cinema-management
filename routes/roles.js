@@ -19,6 +19,13 @@ router.get("/role", async (req, res) => { roles_model
 
 
 
+//CREATE A role
+router.post("/", async(req, res)=>{
+    const role = await roles_model.create(req.body)
+    res.send(role)
+})
+
+
 
 
 
