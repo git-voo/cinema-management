@@ -70,5 +70,4 @@ router.put("/update", async (req, res)=>{
 module.exports = router
 
 
-//NOTES
-// We should also be able to get all schedules for a cinema, theater and vendor
+//NOTES: We should also be able to get all schedules for a cinema, theater and vendor
