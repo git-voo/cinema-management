@@ -11,6 +11,13 @@ router.get("/", async (req, res) => {
     res.send(users)
 })
 
+// GET ALL VENDOR'S USERS
+router.get("/vendor", async (req, res) => {
+    const vendor_id = req.body.vendor_id;
+    const users = await user_model.find({ vendor_id: vendor_id }).lean()
+    res.send(users)
+})
+
 
 
 
