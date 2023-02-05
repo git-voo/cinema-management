@@ -71,4 +71,20 @@ router.post("/email/verify", async (req, res) => {
 })
 
 
+//DELETE USER
+
+router.delete("/delete", async (req, res)=>{
+    const {id} = req.body 
+    const user = await user_model.findOne({_id:id})
+   if(user){
+    await user_model.deleteOne({_id:id})
+
+    res.send("user deleted")
+   }else{
+    res.send("No user found with this id")
+   }
+})
+
+
+
 module.exports = router
