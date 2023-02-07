@@ -11,8 +11,8 @@ router.get("/", async (req, res) => {
 
 //GET MOVIE SINGLE SCHEDULE
 
-router.get("/movie", async (req, res) => {
-    const { movie_id } = req.body
+router.get("/:movie_id", async (req, res) => {
+    const { movie_id } = req.params
     const schedule = await schedules_model.findOne({ _id: movie_id })
     res.send(schedule)
 })
@@ -28,8 +28,8 @@ router.post("/", async(req, res)=>{
 
 
 //DELETE SCHEDULE
-router.delete("/delete", async (req, res)=>{
-    const {id} = req.body 
+router.delete("/:id/delete", async (req, res)=>{
+    const {id} = req.params 
     const schedule = await schedules_model.findOne({_id:id})
    if(schedule){
     await schedules_model.deleteOne({_id:id})
@@ -43,8 +43,8 @@ router.delete("/delete", async (req, res)=>{
 
 // UPDATE SCHEDULE
 
-router.put("/update", async (req, res)=>{
-    const {id} = req.body
+router.put("/:id/update", async (req, res)=>{
+    const {id} = req.params
     const schedule = await schedules_model.findOne({_id:id})
     if(schedule){
        await schedules_model.updateOne({_id:id}, req.body)
