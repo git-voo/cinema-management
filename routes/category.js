@@ -12,8 +12,8 @@ router.get("/", async (req, res) => {
 
 //GET  SINGLE category
 // categories/:id
-router.get("/category", async (req, res) => { categories_model
-    const { category_id } = req.body
+router.get("/:category_id", async (req, res) => { categories_model
+    const { category_id } = req.params
     const category = await categories_model.findOne({ _id: category_id })
     res.send(category)
 })
@@ -22,7 +22,7 @@ router.get("/category", async (req, res) => { categories_model
 
 //CREATE A category
 //categories
-router.post("/", async(req, res)=>{
+router.post("/create", async(req, res)=>{
     const category = await categories_model.create(req.body)
     res.send(category)
 })
@@ -31,11 +31,11 @@ router.post("/", async(req, res)=>{
 
 //DELETE category
 //categories/:id
-router.delete("/delete", async (req, res)=>{
-    const {id} = req.body 
-    const category = await categories_model.findOne({_id:id})
+router.delete("/:category_id/delete", async (req, res)=>{
+    const {category_id} = req.params 
+    const category = await categories_model.findOne({_id:category_id})
    if(category){
-    await categories_model.deleteOne({_id:id})
+    await categories_model.deleteOne({_id:category_id})
 
     res.send("category deleted")
    }else{
@@ -46,12 +46,12 @@ router.delete("/delete", async (req, res)=>{
 
 // UPDATE category
 
-router.put("/update", async (req, res)=>{
-    const {id} = req.body
-    const category = await categories_model.findOne({_id:id})
+router.put("/:category_id/update", async (req, res)=>{
+    const {category_id} = req.params
+    const category = await categories_model.findOne({_id:category_id})
     if(category){
-       await categories_model.updateOne({_id:id}, req.body)
-       const updatedcategory = await categories_model.findOne({_id:id})
+       await categories_model.updateOne({_id:category_id}, req.body)
+       const updatedcategory = await categories_model.findOne({_id:category_id})
         res.send(updatedcategory)
     }else{
         res.send("No category found with this id")
