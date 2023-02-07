@@ -12,23 +12,23 @@ router.get("/", async (req, res) => {
 })
 
 // GET ALL VENDOR'S USERS
-router.get("/vendor", async (req, res) => {
-    const vendor_id = req.body.vendor_id;
+router.get("/:vendor_id", async (req, res) => {
+    const vendor_id = req.params;
     const users = await user_model.find({ vendor_id: vendor_id }).lean()
     res.send(users)
 })
 
 
 //GET ONE USER
-router.get("/user", async (req, res) => {
-    const { id } = req.body
+router.get("/:id", async (req, res) => {
+    const { id } = req.params
     const user = await user_model.findOne({ _id: id })
     res.send(user)
 })
 
 //GET ONE VENDOR'S USER
-router.get("/vendor/user", async (req, res) => {
-    const { id, vendor_id } = req.body
+router.get("/:vendor_id/:user_id", async (req, res) => {
+    const { id, vendor_id } = req.params
     const user = await user_model.findOne({ _id: id, vendor_id: vendor_id })
     res.send(user)
 })
@@ -73,8 +73,8 @@ router.post("/email/verify", async (req, res) => {
 
 //DELETE USER
 
-router.delete("/delete", async (req, res)=>{
-    const {id} = req.body 
+router.delete("/:id/delete", async (req, res)=>{
+    const {id} = req.params 
     const user = await user_model.findOne({_id:id})
    if(user){
     await user_model.deleteOne({_id:id})
@@ -89,8 +89,8 @@ router.delete("/delete", async (req, res)=>{
 
 // UPDATE USER
 
-router.put("/update", async (req, res)=>{
-    const {id} = req.body
+router.put("/:id/update", async (req, res)=>{
+    const {id} = req.params
     const user = await user_model.findOne({_id:id})
     if(user){
        await user_model.updateOne({_id:id}, req.body)

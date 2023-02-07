@@ -4,10 +4,10 @@ const bodyParser = require("body-parser")
 const path = require("path")
 const router = express.Router()
 const PORT = process.env.PORT || 4300
-const users_route = require("./routes/users");
-const schedules_route = require("./routes/schedules")
-const categories_route = require("./routes/categories")
-const roles_route = require("./routes/roles")
+const users_route = require("./routes/user");
+const schedules_route = require("./routes/schedule")
+const categories_route = require("./routes/category")
+const roles_route = require("./routes/role")
 const { default: mongoose } = require("mongoose");
 require('dotenv').config();
 
@@ -24,7 +24,7 @@ const documentation = router.get("/", (req, res)=>{
 app.use("/", documentation) 
 app.use("/users", users_route)
 app.use("/schedules", schedules_route)
-app.use("/categories", categories_route)
+app.use("/category", categories_route)
 app.use("/roles", roles_route)
 
 
