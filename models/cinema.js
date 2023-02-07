@@ -16,5 +16,5 @@ const cinemaSchema = schema({
         required:[true, msg]
     },
 })
-const cinema_model= mongoose.model("cinema", cinemaSchema)
+const cinema_model= mongoose.model("cinemas", cinemaSchema)
 module.exports=cinema_model

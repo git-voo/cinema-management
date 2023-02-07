@@ -3,6 +3,7 @@ const categories_model = require("../models/categories")
 const router = express.Router()
 
 //GET ALL categories
+// categories
 router.get("/", async (req, res) => {
     const categories = await categories_model.find().lean()
     res.send(categories)
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
 
 
 //GET  SINGLE category
-
+// categories/:id
 router.get("/category", async (req, res) => { categories_model
     const { category_id } = req.body
     const category = await categories_model.findOne({ _id: category_id })
@@ -20,6 +21,7 @@ router.get("/category", async (req, res) => { categories_model
 
 
 //CREATE A category
+//categories
 router.post("/", async(req, res)=>{
     const category = await categories_model.create(req.body)
     res.send(category)
@@ -28,6 +30,7 @@ router.post("/", async(req, res)=>{
 
 
 //DELETE category
+//categories/:id
 router.delete("/delete", async (req, res)=>{
     const {id} = req.body 
     const category = await categories_model.findOne({_id:id})
