@@ -11,8 +11,8 @@ router.get("/", async (req, res) => {
 
 //GET  SINGLE role
 
-router.get("/role", async (req, res) => { roles_model
-    const { role_id } = req.body
+router.get("/:role_id", async (req, res) => { roles_model
+    const { role_id } = req.params
     const role = await roles_model.findOne({ _id: role_id })
     res.send(role)
 })
@@ -20,7 +20,7 @@ router.get("/role", async (req, res) => { roles_model
 
 
 //CREATE A role
-router.post("/", async(req, res)=>{
+router.post("/create", async(req, res)=>{
     const role = await roles_model.create(req.body)
     res.send(role)
 })
@@ -28,11 +28,11 @@ router.post("/", async(req, res)=>{
 
 
 //DELETE role
-router.delete("/delete", async (req, res)=>{
-    const {id} = req.body 
-    const role = await roles_model.findOne({_id:id})
+router.delete("/:role_id/delete", async (req, res)=>{
+    const {role_id} = req.body 
+    const role = await roles_model.findOne({_id:role_id})
    if(role){
-    await roles_model.deleteOne({_id:id})
+    await roles_model.deleteOne({_id:role_id})
 
     res.send("role deleted")
    }else{
@@ -43,12 +43,12 @@ router.delete("/delete", async (req, res)=>{
 
 // UPDATE role
 
-router.put("/update", async (req, res)=>{
-    const {id} = req.body
-    const role = await roles_model.findOne({_id:id})
+router.put("/:role_id/update", async (req, res)=>{
+    const {role_id} = req.body
+    const role = await roles_model.findOne({_id:role_id})
     if(role){
-       await roles_model.updateOne({_id:id}, req.body)
-       const updatedrole = await roles_model.findOne({_id:id})
+       await roles_model.updateOne({_id:role_id}, req.body)
+       const updatedrole = await roles_model.findOne({_id:role_id})
         res.send(updatedrole)
     }else{
         res.send("No role found with this id")
