@@ -1,48 +1,39 @@
-const mongoose = require("mongoose") 
-const schema =  mongoose.Schema
-const msg ="Field is required"
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
+const msg = "Field is required";
 const userSchema = new schema({
-    fullname:{
-        type:String,
-        required:[true, msg]
-    },
+  fullName: {
+    type: String,
+    required: [true, msg],
+  },
 
-      email:{
-        type:String,
-        required:[true, msg]
-    },
+  email: {
+    type: String,
+    required: [true, msg],
+  },
 
-      password:{
-        type:String,
-        required:[true, msg]
-    },
+  password: {
+    type: String,
+    required: [true, msg],
+  },
+ 
 
-      phone:{
-        type:String,
-        required:[true, msg]
-    },
+  // vendorId: {
+  //   type: String,
+  //   required: [true, msg],
+  // },
 
-      gender:{
-        type:String 
-    },
+  verificationCode: {
+    type: String,
+    required: [true, msg],
+  },
 
-    vendor_id:{
-        type:String,
-        required:[true, msg]
-    },
-    verification_code:{
-      type:String,
-      required:[true, msg]
-    },
-    
-    is_verified:{
-      type:Boolean,
-      required:[true, msg]
-    }
-    //MODEL SHOULD INCLUDE AN ELEMENT THAT HOLDS VERIFICATION CODE
-    
-})
+  isVerified: {
+    type: Boolean,
+    required: [true, msg],
+  },
+  //MODEL SHOULD INCLUDE AN ELEMENT THAT HOLDS VERIFICATION CODE
+});
 
-
-const user_model = mongoose.model("users", userSchema);
-module.exports = user_model;
+const userModel = mongoose.model("users", userSchema);
+module.exports = userModel;

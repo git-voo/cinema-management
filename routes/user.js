@@ -1,20 +1,20 @@
 const express = require("express")
 const upload = require("../middlewares/multer")
-const user_model = require("../models/users")
+const userModel = require("../models/users")
 const mail = require("../utils/nodemailer")
 
 const router = express.Router()
 
 //GET ALL USERS
 router.get("/", async (req, res) => {
-    const users = await user_model.find().lean()
+    const users = await userModel.find().lean()
     res.send(users)
 })
 
 // GET ALL VENDOR'S USERS
-router.get("/:vendor_id", async (req, res) => {
-    const vendor_id = req.params;
-    const users = await user_model.find({ vendor_id: vendor_id }).lean()
+router.get("/:vendorId", async (req, res) => {
+    const vendorId = req.params;
+    const users = await userModel.find({ vendorId: vendorId }).lean()
     res.send(users)
 })
 
@@ -22,46 +22,49 @@ router.get("/:vendor_id", async (req, res) => {
 //GET ONE USER
 router.get("/:id", async (req, res) => {
     const { id } = req.params
-    const user = await user_model.findOne({ _id: id })
+    const user = await userModel.findOne({ _id: id })
     res.send(user)
 })
 
 //GET ONE VENDOR'S USER
-router.get("/:vendor_id/:user_id", async (req, res) => {
-    const { id, vendor_id } = req.params
-    const user = await user_model.findOne({ _id: id, vendor_id: vendor_id })
+router.get("/:vendorId/:user_id", async (req, res) => {
+    const { id, vendorId } = req.params
+    const user = await userModel.findOne({ _id: id, vendorId: vendorId })
     res.send(user)
 })
 
 //CREATE A USER
 
-router.post("/create", async (req, res) => {
+router.post("/auth/register", async (req, res) => {
 
-    const veri_code = Math.floor(100000 + Math.random() * 900000)
-    req.body.verification_code = veri_code
+    const verificationCode = Math.floor(100000 + Math.random() * 900000)
+    req.body.verificationCode = verificationCode
 
 
-    const existingUser = await user_model.findOne({ "email": req.body.email })
+    const existingUser = await userModel.findOne({ "email": req.body.email })
 
     if (existingUser) {
         res.send("user with email already exist. Login to continue")
     } else {
         //Email code to user 
-        mail(veri_code, req.body)
-        const user = await user_model.create(req.body)
+        mail(verificationCode, req.body)
+        const user = await userModel.create(req.body)
         res.send(user)
     }
 
 })
 
+
+
+
 //Verify User Email
 router.post("/email/verify", async (req, res) => {
     const { email, inputedCode } = req.body
-    const user = await user_model.findOne({ email: email })
+    const user = await userModel.findOne({ email: email })
     if (user) {
 
-        if (user.verification_code === inputedCode) {
-            user.is_verified = true
+        if (user.verificationCode === inputedCode) {
+            user.isVerified = true
             user.save()
             res.send(true)
         } else {
@@ -75,9 +78,9 @@ router.post("/email/verify", async (req, res) => {
 
 router.delete("/:id/delete", async (req, res)=>{
     const {id} = req.params 
-    const user = await user_model.findOne({_id:id})
+    const user = await userModel.findOne({_id:id})
    if(user){
-    await user_model.deleteOne({_id:id})
+    await userModel.deleteOne({_id:id})
 
     res.send("user deleted")
    }else{
@@ -91,10 +94,10 @@ router.delete("/:id/delete", async (req, res)=>{
 
 router.put("/:id/update", async (req, res)=>{
     const {id} = req.params
-    const user = await user_model.findOne({_id:id})
+    const user = await userModel.findOne({_id:id})
     if(user){
-       await user_model.updateOne({_id:id}, req.body)
-       const updatedUser = await user_model.findOne({_id:id})
+       await userModel.updateOne({_id:id}, req.body)
+       const updatedUser = await userModel.findOne({_id:id})
         res.send(updatedUser)
     }else{
         res.send("No user found with this id")

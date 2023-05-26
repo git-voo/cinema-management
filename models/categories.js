@@ -15,7 +15,7 @@ const categoriesSchema = new schema({
     },
 
 
-        vendor_id:{
+        vendorId:{
         type:String,
         required:[true, msg]
     }
