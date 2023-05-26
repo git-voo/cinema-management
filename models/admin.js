@@ -25,7 +25,7 @@ const adminSchema = new mongoose.Schema({
         type: String,
         require:[true, "field is required"]
     },
-    is_verified:{
+    isVerified:{
         type: String,
         require:[true, "field is required"]
     },
@@ -33,7 +33,7 @@ const adminSchema = new mongoose.Schema({
         type: String,
         require:[true, "field is required"]
     },
-    vendor_id:{
+    vendorId:{
         type: String,
         require:[true, "field is required"]
     }

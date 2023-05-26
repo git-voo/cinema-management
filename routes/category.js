@@ -22,7 +22,7 @@ router.get("/:category_id", async (req, res) => { categories_model
 
 //CREATE A category
 //categories
-router.post("/create", async(req, res)=>{
+router.post("/", async(req, res)=>{
     const category = await categories_model.create(req.body)
     res.send(category)
 })
@@ -31,7 +31,7 @@ router.post("/create", async(req, res)=>{
 
 //DELETE category
 //categories/:id
-router.delete("/:category_id/delete", async (req, res)=>{
+router.delete("/:category_id", async (req, res)=>{
     const {category_id} = req.params 
     const category = await categories_model.findOne({_id:category_id})
    if(category){
@@ -46,7 +46,7 @@ router.delete("/:category_id/delete", async (req, res)=>{
 
 // UPDATE category
 
-router.put("/:category_id/update", async (req, res)=>{
+router.put("/:category_id", async (req, res)=>{
     const {category_id} = req.params
     const category = await categories_model.findOne({_id:category_id})
     if(category){

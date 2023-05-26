@@ -17,7 +17,7 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required:[true, 'field is required']
     },
-    vendor_id:{
+    vendorId:{
         type: String,
         required:[true, 'field is required']
     }

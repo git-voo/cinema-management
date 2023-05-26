@@ -19,7 +19,7 @@ const ratingsSchema = schema({
         type: Array,
         required: [true, msg]
     },
-    vendor_id: {
+    vendorId: {
         type: String,
         required: [true, msg]
     }

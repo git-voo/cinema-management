@@ -28,7 +28,7 @@ router.post("/", async(req, res)=>{
 
 
 //DELETE SCHEDULE
-router.delete("/:id/delete", async (req, res)=>{
+router.delete("/:id", async (req, res)=>{
     const {id} = req.params 
     const schedule = await schedules_model.findOne({_id:id})
    if(schedule){
@@ -43,7 +43,7 @@ router.delete("/:id/delete", async (req, res)=>{
 
 // UPDATE SCHEDULE
 
-router.put("/:id/update", async (req, res)=>{
+router.put("/:id", async (req, res)=>{
     const {id} = req.params
     const schedule = await schedules_model.findOne({_id:id})
     if(schedule){

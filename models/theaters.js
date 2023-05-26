@@ -28,7 +28,7 @@ const theatersSchema =schema({
         type:String,
         required:[true, msg]
     },
-    vendor_id:{
+    vendorId:{
         type:String,
         required:[true, msg]
     }

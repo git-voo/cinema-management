@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const eventSchema = new mongoose.Schema({
-    vendor_id:{
+    vendorId:{
         type: String,
         required:[true, 'field is required']
     },
