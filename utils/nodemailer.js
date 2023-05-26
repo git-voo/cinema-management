@@ -1,4 +1,5 @@
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer"); 
+const getFirstName = require("./getFirstname");
 
 
 
@@ -8,16 +9,16 @@ const mail = (code, receiver) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'ourEmail@email.com',
-            pass: 'rumbledpassword'
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD
         }
     });
 
     const mailOptions = {
-        from: 'ourEmail@email.com',
+        from: process.env.EMAIL,
         to: receiver.email,
         subject: 'Verification Code',
-        html: `<p> Welcome <b>${receiver.fullname}</b>, Your verification code is ${code} </p>`,
+        html: `<p> Welcome <b>${getFirstName(receiver.fullName)}</b>, Your verification code is ${code} </p>`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
