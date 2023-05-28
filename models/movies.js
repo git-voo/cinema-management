@@ -1,14 +1,14 @@
 
 const mongoose=require("mongoose")
-const schema= new mongoose.Schema
+const schema= mongoose.Schema
 const msg= "Field is required"
 
-const moviesSchema = schema({
+const moviesSchema = new schema({
     title:{
         type: String,
         required:[true, msg]
     },
-    image:{
+    thumbnail:{
         type: String,
         required:[true, msg]
     },
@@ -20,7 +20,7 @@ const moviesSchema = schema({
         type: String,
         required:[true, msg]
     },
-    release_date:{
+    releaseDate:{
         type: Date,
         required:[true, msg]
     },
@@ -30,34 +30,38 @@ const moviesSchema = schema({
     },
     rating:{
         type: String,
-        required:[true, msg]
+        default:0, 
     },
-    top_cast:{
+    topCast:{
         type: Array,
         required:[true, msg]
     },
     director:{
-        type: Array,
-        required:[true, msg]
-    },
-    production_studio:{
-        type: Array,
-        required:[true, msg]
-    },
-    seen_by:{
         type: String,
         required:[true, msg]
     },
+    productionStudio:{
+        type: String,
+        required:[true, msg]
+    },
+    seenBy:{
+        type: String,
+        default:0, 
+    },
     duration:{
-        type: Number,
+        type: String,
         required:[true, msg]
     },
     vendorId:{
-        type: String,
+        type: String, 
+        required:[true, msg]
+    },  
+    cinemaId:{
+        type: String, 
         required:[true, msg]
     },
 })
 
-const movies_model = mongoose.model("movies", moviesSchema)
-module.exports = movies_model;
+const moviesModel = mongoose.model("movies", moviesSchema)
+module.exports = moviesModel;
 

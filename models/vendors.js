@@ -1,19 +1,27 @@
-const mongoose = require("mongoose")
-const schema = new mongoose.Schema
-const msg = "Field is required"
+//A VENDOR IS THE MOTHER ORGANIZATION THAT RUNS CINEMAS 
+// FOR INSTANCE, SILVERBIRD CINEMAS, GENESIS CINEMAS
 
-const vendorsSchema = schema({
-    name: {
-        type: Array,
-        required: [true, msg]
-    },
-    logo: {
-        type: String,
-        required: [true, msg]
-    },
-    
-    
-})
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
+const msg = "Field is required";
 
-const vendors_model = mongoose.model("vendors", vendorsSchema)
-module.exports = vendors_model;
+const vendorsSchema = new schema({
+  name: {
+    type: String,
+    required: [true, msg],
+  },
+  email: {
+    type: String,
+    required: [true, msg],
+  },
+  password: {
+    type: String,
+    required: [true, msg],
+  },
+  logo: {
+    type: String, 
+  },
+});
+
+const vendorsModel = mongoose.model("vendors", vendorsSchema);
+module.exports = vendorsModel;

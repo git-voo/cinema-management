@@ -6,6 +6,9 @@ const router = express.Router()
 const cors = require("cors")
 const PORT = process.env.PORT || 4300
 const authRoute = require("./routes/auth")
+const moviesRoute = require("./routes/movies")
+const vendorsRoute = require("./routes/vendor")
+
 const usersRoute = require("./routes/user");
 const schedules_route = require("./routes/schedule")
 const categories_route = require("./routes/category")
@@ -26,6 +29,12 @@ const documentation = router.get("/", (req, res)=>{
 
 app.use("/", documentation) 
 app.use("/auth", authRoute)
+app.use("/movies", moviesRoute)
+app.use("/vendor", vendorsRoute)
+
+
+
+
 app.use("/users", usersRoute)
 app.use("/schedules", schedules_route)
 app.use("/categories", categories_route)
