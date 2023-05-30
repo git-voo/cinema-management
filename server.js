@@ -42,7 +42,8 @@ app.use("/roles", roles_route)
 
 
 const URI = process.env.MONGODB_LOCAL
-mongoose.connect(URI, {
+const AtlasDb_url = `mongodb+srv://visualprimecinemas:newpassword@cluster0.mic10ie.mongodb.net/cinema_management`
+mongoose.connect(AtlasDb_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     family: 4

@@ -22,6 +22,12 @@ const schedulesSchema = new schema({
         required: [true, msg]
     }, 
 
+
+    // combine date, days, time, and amount to a one-variable object
+    //such as 
+    //schedule:[{day:"", time:"", amount:""}, {day:"", time:"", amount:""}]
+
+
     date: {
         type: Array,
         required: [true, msg]
