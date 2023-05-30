@@ -9,8 +9,7 @@ const getVendorsCinemas = async (req, res) => {
 
   try {
     const vendorCinemas = await cinemaModel.find({ vendorId });
-
-    console.log(vendorId, vendorCinemas)
+ 
     if (vendorCinemas) {
       handleSuccess(res, 200, "", vendorCinemas);
     } else {
