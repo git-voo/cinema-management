@@ -14,3 +14,6 @@ router.get("/all", getAllMovies)
 router.get("/:movieId", getSingleMovie)
 router.get("/cinema/:cinemaId", getCinemaMovies)
 
+
+module.exports = router;
+
