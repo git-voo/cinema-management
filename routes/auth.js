@@ -7,12 +7,16 @@ const userLogin = require("../controllers/auth/auth.user.login");
 const vendorLogin = require("../controllers/auth/auth.vendor.login");
 const registerCinema = require("../controllers/auth/auth.cinema.register");
 const cinemaLogin = require("../controllers/auth/auth.cinema.login");
+const checkEmail = require("../controllers/auth/auth.checkEmail");
+const updatePassword = require("../controllers/auth/auth.passwordreset");
 const router = express.Router();
 
 
 router.post("/user/register", registerUser); //create user
 router.post("/user/login", userLogin); //log user in
-router.post("/verify", verifyEmail); //verify any email
+router.post("/validate-email", checkEmail); //send code to any email
+router.post("/verify", verifyEmail); //confirm any verification code
+router.put("/password-reset", updatePassword); //confirm any verification code
 
 
 router.post("/vendor/register", upload.any(), registerVendor); 

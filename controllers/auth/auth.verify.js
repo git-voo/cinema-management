@@ -13,6 +13,7 @@ const verifyEmail = async (req, res) => {
       const newUser = user;
       if (verificationCode === userCode) {
         newUser.isVerified = true;
+        newUser.confirmedVerification = true;
 
         userModel.findOneAndUpdate(
           { email },
