@@ -27,6 +27,10 @@ const userSchema = new schema({
     type: String,
     required: [true, msg],
   },
+  confirmedVerification: {
+    type: Boolean, 
+    default:false,
+  },
 
   isVerified: {
     type: Boolean,

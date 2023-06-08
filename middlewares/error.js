@@ -1,7 +1,11 @@
 function handleError (res, code, error){
   if(code === 403){
     error = `${error} already exists with this email. Login to proceed`
-  }else if(code ===500){
+  }else if(code ===404){
+    error = `${error} not found`
+
+  }
+  else if(code ===500){
     error = `server error`
 
   }
