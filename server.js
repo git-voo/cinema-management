@@ -35,8 +35,9 @@ app.use("/schedules", schedules_route);
 app.use("/categories", categories_route);
 app.use("/roles", roles_route);
 
-const URI = process.env.MONGODB_URL; 
-mongoose.connect(
+const URI = process.env.MONGODB_URL;  
+
+mongoose.connect( 
   URI,
   {
     useNewUrlParser: true,

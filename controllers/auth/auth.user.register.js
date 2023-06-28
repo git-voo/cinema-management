@@ -4,9 +4,11 @@ const userModel = require("../../models/users");
 const lowerCase = require("../../utils/lowercase");
 const mail = require("../../utils/nodemailer");
 const removePassword = require("../../utils/removePassword");
+const validateUser = require("../../utils/validators/user");
 
 const registerUser = async (req, res) => {
     const body = req.body;
+    if(!validateUser(req, res)) return false
   
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
     body.verificationCode = verificationCode;
