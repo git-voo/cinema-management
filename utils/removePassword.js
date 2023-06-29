@@ -1,7 +1,9 @@
-const removePassword = (object)=>{
+const removePassword = (object, ...propertiesToRemove)=>{
     if(!object) return
-    const { password, ...noPasswordUser } = object.toObject();
-
+    const { password, others, ...noPasswordUser } = object.toObject();
+    for (const property of propertiesToRemove) {
+        delete noPasswordUser[property];
+      }
     return noPasswordUser
 }
 

@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
         mail(verificationCode, body);
         const user = await userModel.create(req.body); 
   
-        handleSuccess(res, 200, "Account creation successful", removePassword(user)) 
+        handleSuccess(res, 200, "Account creation successful", removePassword(user, "verificationCode")) 
       } catch (error) { 
       handleError(res, 500)
       }

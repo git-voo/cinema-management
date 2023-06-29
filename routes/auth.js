@@ -16,7 +16,7 @@ router.post("/user/register", registerUser); //create user
 router.post("/user/login", userLogin); //log user in
 router.post("/validate-email", checkEmail); //send code to any email
 router.post("/verify", verifyEmail); //confirm any verification code
-router.put("/password-reset", updatePassword); //confirm any verification code
+router.put("/password-reset", updatePassword); //change password
 
 
 router.post("/vendor/register", upload.any(), registerVendor); 
